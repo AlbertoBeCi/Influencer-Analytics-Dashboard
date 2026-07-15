@@ -1,1 +1,6 @@
+/* Punto de entrada de Tailwind CSS v4: esta única directiva importa el motor
+   de utilidades, preflight (reset de estilos) y capas base. No requiere
+   'tailwind.config.js' ni directivas @tailwind base/components/utilities
+   de v3; el CLI de v4 detecta automáticamente las clases usadas en
+   'index.html' al compilar hacia 'dist/output.css'. */
 @import "tailwindcss";
