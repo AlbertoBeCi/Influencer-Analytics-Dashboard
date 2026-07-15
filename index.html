@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full bg-slate-50 text-slate-900">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Influencer Analytics Dashboard</title>
+  <link rel="stylesheet" href="./dist/output.css">
+</head>
+<body class="min-h-full flex flex-col">
+
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+      <div>
+        <h1 class="text-2xl font-bold tracking-tight text-slate-900">Influencer Performance</h1>
+        <p class="text-sm text-slate-500">Consolidado de campañas, conversiones y comisiones (15%)</p>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="inline-flex items-center rounded-md bg-emerald-50 px-2 py-1 text-xs font-medium text-emerald-700 ring-1 ring-emerald-600/10 ring-inset">
+          Actualizado: En Vivo
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8 space-y-8">
+
+    <section aria-labelledby="kpi-title">
+      <h2 id="kpi-title" class="sr-only">Indicadores Clave de Rendimiento</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <article class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs flex flex-col justify-between">
+          <div>
+            <p class="text-sm font-medium text-slate-500 uppercase tracking-wider">Total Comisiones (15%)</p>
+            <h3 class="text-3xl font-bold text-slate-900 mt-2">3.750,00 €</h3>
+          </div>
+          <div class="mt-4 flex items-center gap-2 text-sm text-emerald-600">
+            <span class="font-semibold">↑ 12.4%</span>
+            <span class="text-slate-400">vs último mes</span>
+          </div>
+        </article>
+
+        <article class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs flex flex-col justify-between">
+          <div>
+            <p class="text-sm font-medium text-slate-500 uppercase tracking-wider">Tasa de Conversión Promedio</p>
+            <h3 class="text-3xl font-bold text-slate-900 mt-2">3.82%</h3>
+          </div>
+          <div class="mt-4 flex items-center gap-2 text-sm text-emerald-600">
+            <span class="font-semibold">↑ 0.8%</span>
+            <span class="text-slate-400">Objetivo: 3.5%</span>
+          </div>
+        </article>
+
+        <article class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs flex flex-col justify-between md:col-span-2 lg:col-span-1">
+          <div>
+            <p class="text-sm font-medium text-slate-500 uppercase tracking-wider">Ventas Totales Conseguidas</p>
+            <h3 class="text-3xl font-bold text-slate-900 mt-2">294 unidades</h3>
+          </div>
+          <div class="mt-4 flex items-center gap-2 text-sm text-slate-500">
+            <span>Prod. A: 120 | Prod. B: 74 | Prod. C: 100</span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section aria-labelledby="drivers-title" class="space-y-4">
+      <h2 id="drivers-title" class="text-lg font-bold text-slate-900">Drivers de Rendimiento</h2>
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs space-y-6">
+          <h3 class="font-semibold text-slate-800">Retorno por Plataforma</h3>
+          <div class="space-y-4">
+            <div class="space-y-1">
+              <div class="flex justify-between text-sm">
+                <span class="font-medium text-slate-700">Instagram</span>
+                <span class="text-slate-500">1.850 € (4.2% Conv.)</span>
+              </div>
+              <div class="w-full bg-slate-100 rounded-full h-2.5">
+                <div class="bg-indigo-600 h-2.5 rounded-full" style="width: 80%"></div>
+              </div>
+            </div>
+            <div class="space-y-1">
+              <div class="flex justify-between text-sm">
+                <span class="font-medium text-slate-700">TikTok</span>
+                <span class="text-slate-500">1.200 € (3.5% Conv.)</span>
+              </div>
+              <div class="w-full bg-slate-100 rounded-full h-2.5">
+                <div class="bg-pink-500 h-2.5 rounded-full" style="width: 60%"></div>
+              </div>
+            </div>
+            <div class="space-y-1">
+              <div class="flex justify-between text-sm">
+                <span class="font-medium text-slate-700">YouTube</span>
+                <span class="text-slate-500">700 € (2.9% Conv.)</span>
+              </div>
+              <div class="w-full bg-slate-100 rounded-full h-2.5">
+                <div class="bg-red-500 h-2.5 rounded-full" style="width: 35%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs space-y-6">
+          <h3 class="font-semibold text-slate-800">Rendimiento por Producto</h3>
+          <div class="space-y-4">
+            <div class="space-y-1">
+              <div class="flex justify-between text-sm">
+                <span class="font-medium text-slate-700">Producto B (120€)</span>
+                <span class="text-slate-500">1.332 € Comisiones</span>
+              </div>
+              <div class="w-full bg-slate-100 rounded-full h-2.5">
+                <div class="bg-emerald-500 h-2.5 rounded-full" style="width: 90%"></div>
+              </div>
+            </div>
+            <div class="space-y-1">
+              <div class="flex justify-between text-sm">
+                <span class="font-medium text-slate-700">Producto C (80€)</span>
+                <span class="text-slate-500">1.200 € Comisiones</span>
+              </div>
+              <div class="w-full bg-slate-100 rounded-full h-2.5">
+                <div class="bg-emerald-500 h-2.5 rounded-full" style="width: 75%"></div>
+              </div>
+            </div>
+            <div class="space-y-1">
+              <div class="flex justify-between text-sm">
+                <span class="font-medium text-slate-700">Producto A (50€)</span>
+                <span class="text-slate-500">900 € Comisiones</span>
+              </div>
+              <div class="w-full bg-slate-100 rounded-full h-2.5">
+                <div class="bg-emerald-500 h-2.5 rounded-full" style="width: 50%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs space-y-4">
+          <h3 class="font-semibold text-slate-800">Embudo de Conversión</h3>
+          <div class="space-y-3">
+            <div class="flex items-center justify-between text-xs bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+              <span class="font-medium text-slate-600">1. Alcance / Impresiones</span>
+              <span class="font-bold text-slate-900">150K</span>
+            </div>
+            <div class="flex items-center justify-between text-xs bg-slate-100 p-2.5 rounded-lg border border-slate-200 mx-2">
+              <span class="font-medium text-slate-600">2. Clics en Enlace</span>
+              <span class="font-bold text-slate-900">7.5K (5% CTR)</span>
+            </div>
+            <div class="flex items-center justify-between text-xs bg-indigo-50 p-2.5 rounded-lg border border-indigo-100 mx-4">
+              <span class="font-medium text-indigo-700">3. Conversión final</span>
+              <span class="font-bold text-indigo-900">294 Ventas</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section aria-labelledby="operations-title" class="space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <h2 id="operations-title" class="text-lg font-bold text-slate-900">Detalles Operacionales</h2>
+        <div class="flex items-center gap-2 bg-amber-50 border border-amber-200 rounded-lg p-2.5 text-xs text-amber-800">
+          <span class="flex h-2 w-2 relative">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
+          </span>
+          <span><strong>Alerta:</strong> La campaña de TikTok de Producto A muestra un descenso del 4% en CTR.</span>
+        </div>
+      </div>
+
+      <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-xs">
+        <div class="p-4 border-b border-slate-200 bg-slate-50/50">
+          <h3 class="font-semibold text-slate-800 text-sm">Análisis Detallado por Producto</h3>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-sm border-collapse">
+            <thead>
+              <tr class="bg-slate-50 border-b border-slate-200 text-slate-500 font-medium">
+                <th class="p-4">Producto</th>
+                <th class="p-4">Precio Unitario</th>
+                <th class="p-4">Ventas Totales</th>
+                <th class="p-4">Comisión Recibida</th>
+                <th class="p-4 text-right">Rendimiento (ROI)</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr class="hover:bg-slate-50/50">
+                <td class="p-4 font-semibold text-slate-900">Producto B</td>
+                <td class="p-4 text-slate-600">120,00 €</td>
+                <td class="p-4 text-slate-600">74 u.</td>
+                <td class="p-4 text-emerald-600 font-medium">1.332,00 €</td>
+                <td class="p-4 text-right text-slate-900 font-semibold">Excelente</td>
+              </tr>
+              <tr class="hover:bg-slate-50/50">
+                <td class="p-4 font-semibold text-slate-900">Producto C</td>
+                <td class="p-4 text-slate-600">80,00 €</td>
+                <td class="p-4 text-slate-600">100 u.</td>
+                <td class="p-4 text-emerald-600 font-medium">1.200,00 €</td>
+                <td class="p-4 text-right text-slate-900 font-semibold">Estable</td>
+              </tr>
+              <tr class="hover:bg-slate-50/50">
+                <td class="p-4 font-semibold text-slate-900">Producto A</td>
+                <td class="p-4 text-slate-600">50,00 €</td>
+                <td class="p-4 text-slate-600">120 u.</td>
+                <td class="p-4 text-emerald-600 font-medium">900,00 €</td>
+                <td class="p-4 text-right text-slate-900 font-semibold">Estable</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="bg-white border-t border-slate-200 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 text-center text-xs text-slate-400">
+      <p>© 2026 Influencer Analytics Dashboard. Diseñado exclusivamente con HTML Semántico y Tailwind CSS v4.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
