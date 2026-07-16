@@ -1,41 +1,140 @@
-# HTML Hello
+<p align="center">
+  <img src="./assets/banner.svg" alt="Influencer Performance Dashboard" width="100%">
+</p>
 
-The most basic boilerplate for any 4Geeks Academy student, start your very first website from scratch.
+<p align="center">
+  <img src="https://img.shields.io/badge/HTML5-Sem%C3%A1ntico-E34F26?style=flat-square&logo=html5&logoColor=white" alt="HTML5 Semántico">
+  <img src="https://img.shields.io/badge/Tailwind_CSS-v4-38BDF8?style=flat-square&logo=tailwindcss&logoColor=white" alt="Tailwind CSS v4">
+  <img src="https://img.shields.io/badge/JavaScript-0%25-lightgrey?style=flat-square" alt="Sin JavaScript">
+  <img src="https://img.shields.io/badge/A11y-WCAG_AA-22C55E?style=flat-square" alt="Accesible">
+  <img src="https://img.shields.io/badge/Mobile--First-Responsive-6366F1?style=flat-square" alt="Mobile-First">
+</p>
 
-> There is a video tutorial on [how to use this template to create your very first website here](https://youtu.be/dfbDCMu_p-0).
+# 📊 Influencer Performance Dashboard
 
-## What to do next?
+Dashboard estático de analítica de campañas para creadoras/influencers, construido **100% con HTML5 semántico y Tailwind CSS v4 nativo** — sin frameworks JavaScript, sin CDN, sin dependencias de runtime.
 
-Create an `index.html` file with the [basic HTML structure](http://4geeks.com/lesson/what-is-html-learn-html#page-structure) and see it live by running a web-server using the following command:
+---
+
+## 🚀 Introducción y Propósito del Proyecto
+
+Una influencer que promociona productos en **Instagram, TikTok y YouTube** genera datos de rendimiento dispersos: métricas de alcance en cada red social, reportes de ventas del anunciante, y sus propias notas de comisión. Sin un punto único de consulta, resulta difícil responder con rapidez preguntas básicas del negocio: *¿cuánto he ganado este mes?*, *¿qué producto merece más esfuerzo de promoción?*, *¿en qué red social debería invertir más contenido?*
+
+Este dashboard **consolida esos datos en una sola vista** — KPIs, drivers de rendimiento y detalle operacional — para que la influencer pueda tomar decisiones informadas sobre en qué plataforma y qué producto enfocar su próxima campaña, sin depender de hojas de cálculo dispersas ni herramientas externas.
+
+## 🎯 Respuestas a las Preguntas de Negocio
+
+El dashboard está diseñado para que cada bloque responda directamente a una pregunta de negocio concreta:
+
+| Pregunta de negocio | Dónde se responde | Cómo |
+|---|---|---|
+| 💶 **¿Cuánto dinero estoy generando en comisiones?** | KPI *"Total Comisiones (15%)"* | Comisión total calculada sobre las ventas cerradas de los 3 productos, con variación vs. el mes anterior |
+| 🏆 **¿Qué productos están generando más ingresos?** | Driver *"Rendimiento por Producto"* + Tabla *"Análisis Detallado por Producto"* | Barras comparativas de comisión por producto y tabla con precio unitario, unidades vendidas, comisión recibida y ROI cualitativo |
+| 🔻 **¿Qué tan bien convierten mis anuncios?** | Driver *"Embudo de Conversión"* | Visualiza la caída progresiva Alcance → Clics → Ventas, junto con el CTR de cada etapa |
+| 📱 **¿Qué plataformas rinden mejor?** | Driver *"Retorno por Plataforma"* | Compara ingresos y tasa de conversión de Instagram, TikTok y YouTube en barras independientes |
+
+Adicionalmente, el bloque de **Alertas** (`role="status"`) señala automáticamente anomalías relevantes, como una caída de CTR en una campaña específica, sin que la influencer tenga que ir a buscarlas manualmente.
+
+## 🛠️ Stack Tecnológico & Arquitectura
+
+### CSS: Tailwind CSS v4 nativo (sin CDN)
+
+El proyecto usa el **CLI oficial de Tailwind CSS v4** (`@tailwindcss/cli`) en lugar del antiguo `cdn.tailwindcss.com` o cualquier script de navegador. Esto significa:
+
+- ✅ **CSS compilado y purgado**: solo se genera el CSS de las clases realmente usadas en `index.html` — sin overhead de un motor de utilidades cargado en el cliente.
+- ✅ **Sin `tailwind.config.js`**: Tailwind v4 se configura de forma "CSS-first" mediante una única directiva `@import "tailwindcss";` en `src/input.css` — no quedan restos de configuración de v3.
+- ✅ **Cero JavaScript de aplicación**: el proyecto no usa React, Vue, Svelte ni scripts propios. Toda la interactividad visual (hover de filas, badges, indicadores) se resuelve con utilidades y pseudo-clases de Tailwind.
+
+### HTML5 Semántico y Accesibilidad (A11y)
+
+En lugar de una sopa de `<div>`, cada bloque usa la etiqueta que mejor describe su función:
+
+- **Landmarks de página**: `<header>`, `<main>`, `<footer>` — permiten a un lector de pantalla saltar entre regiones sin leer todo el documento.
+- **`<section>` / `<article>`**: cada sección del dashboard (`KPIs`, `Drivers`, `Operacional`) es un `<section aria-labelledby="...">` con su propio título accesible; cada tarjeta de KPI es un `<article>` autocontenido.
+- **`<dl>` / `<dt>` / `<dd>` para los KPIs**: un KPI es semánticamente un *par etiqueta-valor* (ej. "Total Comisiones" → "3.750,00 €"), no un título de sección. Por eso se usa una lista de definiciones en lugar de un `<h3>` con el número dentro — esto evita romper la jerarquía de encabezados que usan los usuarios de lector de pantalla para navegar la página.
+- **Tabla de datos real**: `<thead>`/`<tbody>`/`<th scope="col">`/`<th scope="row">`/`<caption class="sr-only">` — cada celda se asocia correctamente con su fila y columna, y el contenedor con scroll horizontal es accesible por teclado (`tabindex="0"`, `role="region"`).
+- **Contraste y estados dinámicos**: colores ajustados a AA (mínimo 4.5:1), badges de estado con `role="status"`, iconografía puramente decorativa marcada con `aria-hidden="true"`.
+
+## 📦 Estructura del Proyecto
+
+```text
+Influencer-Analytics-Dashboard/
+├── assets/
+│   └── banner.svg          # Banner del README (SVG, sin dependencias externas)
+├── dist/
+│   └── output.css          # CSS compilado por Tailwind (generado, no editar a mano)
+├── src/
+│   └── input.css           # Punto de entrada de Tailwind v4 (@import "tailwindcss";)
+├── index.html               # Dashboard completo: HTML semántico + clases Tailwind
+├── package.json              # Dependencias de build (tailwindcss, @tailwindcss/cli)
+├── server.py                  # Servidor local opcional (Flask) para previsualizar
+└── README.md
+```
+
+## ⚙️ Instrucciones de Instalación y Desarrollo
+
+### 1. Preparar el proyecto
 
 ```bash
-$ pip3 install flask && python3 server.py
+git clone <url-del-repositorio>
+cd Influencer-Analytics-Dashboard
+npm install
 ```
 
-- You can create as many HTML files as you want.
-- You can also create CSS files and import them into your website using a `<link>` tag placed between the `<head></head>` tags, like this:
+### 2. Compilar Tailwind CSS v4
+
+**Build único** (una sola compilación del CSS final):
+
+```bash
+npx @tailwindcss/cli -i ./src/input.css -o ./dist/output.css
+```
+
+**Modo watch** (recompila automáticamente mientras editas clases en `index.html`):
+
+```bash
+npx @tailwindcss/cli -i ./src/input.css -o ./dist/output.css --watch
+```
+
+> 💡 Ambos comandos están también disponibles como scripts de npm:
+> ```bash
+> npm run build:css   # build único
+> npm run watch:css   # modo watch
+> ```
+
+### 3. Previsualizar el dashboard
+
+Al no depender de ningún framework, basta con abrir `index.html` directamente en el navegador, o levantar el servidor local incluido:
+
+```bash
+pip3 install flask && python3 server.py
+```
+
+## 📈 Decisiones de Diseño y UX
+
+### Mobile-First con 3 breakpoints
+
+Todas las clases de layout parten de la versión **móvil sin prefijo** y se amplían progresivamente:
 
 ```html
-<head>
-  ...
-  <link rel="stylesheet" type="text/css" href="styles.css">
-  ...
-</head>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 ```
 
-- If you want to use Tailwind CSS, add it optionally via the official Tailwind CSS v4 CDN inside the same `<head>`:
+- 📱 **Móvil** (sin prefijo): 1 columna, contenido apilado verticalmente.
+- 📟 **Tablet** (`md:`): 2 columnas.
+- 🖥️ **Desktop** (`lg:`): 3 columnas.
 
-```html
-<head>
-  ...
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-  <link rel="stylesheet" type="text/css" href="styles.css">
-  ...
-</head>
-```
+La única zona con contenido potencialmente más ancho que la pantalla (la tabla de productos) queda encapsulada en un contenedor `overflow-x-auto` propio, evitando que ningún elemento provoque **scroll horizontal a nivel de página**.
 
-### Contributors
+### Gráficos "drivers" sin JavaScript ni librerías de charting
 
-This template was built as part of the [Full Stack Developer course](https://4geeksacademy.com/us/coding-bootcamps/part-time-full-stack-developer) at [4Geeks Academy Coding Bootcamp](https://4geeksacademy.com/us/coding-bootcamp) by [Alejandro Sanchez](https://twitter.com/alesanchezr) and [many other contributors](https://github.com/4GeeksAcademy/html-hello/graphs/contributors).
+Las barras de *Retorno por Plataforma* y *Rendimiento por Producto*, así como el *Embudo de Conversión*, se construyen únicamente con utilidades de Tailwind:
 
-You can find other templates and resources like this at the [school's GitHub page](https://github.com/4geeksacademy/).
+- Un contenedor `bg-slate-100 rounded-full` actúa como **pista** de ancho completo.
+- Dentro, un `<div>` con color de marca y `style="width: X%"` representa el **valor proporcional** relleno.
+- El embudo reutiliza la misma idea, pero con márgenes horizontales progresivos (`mx-2`, `mx-4`) para simular el estrechamiento visual de cada etapa.
+
+Este enfoque evita cargar Chart.js/D3 u otra librería externa: el "gráfico" es, en esencia, CSS puro con datos ya conocidos en tiempo de diseño, ideal para un dashboard estático como este.
+
+---
+
+<p align="center">© 2026 Influencer Analytics Dashboard — Construido con HTML semántico y Tailwind CSS v4.</p>
