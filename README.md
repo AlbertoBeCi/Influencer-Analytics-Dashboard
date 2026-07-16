@@ -53,7 +53,8 @@ En lugar de una sopa de `<div>`, cada bloque usa la etiqueta que mejor describe 
 - **`<section>` / `<article>`**: cada sección del dashboard (`KPIs`, `Drivers`, `Operacional`) es un `<section aria-labelledby="...">` con su propio título accesible; cada tarjeta de KPI es un `<article>` autocontenido.
 - **`<dl>` / `<dt>` / `<dd>` para los KPIs**: un KPI es semánticamente un *par etiqueta-valor* (ej. "Total Comisiones" → "3.750,00 €"), no un título de sección. Por eso se usa una lista de definiciones en lugar de un `<h3>` con el número dentro — esto evita romper la jerarquía de encabezados que usan los usuarios de lector de pantalla para navegar la página.
 - **Tabla de datos real**: `<thead>`/`<tbody>`/`<th scope="col">`/`<th scope="row">`/`<caption class="sr-only">` — cada celda se asocia correctamente con su fila y columna, y el contenedor con scroll horizontal es accesible por teclado (`tabindex="0"`, `role="region"`).
-- **Contraste y estados dinámicos**: colores ajustados a AA (mínimo 4.5:1), badges de estado con `role="status"`, iconografía puramente decorativa marcada con `aria-hidden="true"`.
+- **`<ul>`/`<li>` para el panel de Alertas**: las alertas son una lista de elementos del mismo tipo, no un bloque de texto suelto — usar una lista semántica permite que crezca a futuro sin cambiar la estructura, y que un lector de pantalla anuncie cuántos elementos contiene.
+- **Contraste y estados dinámicos**: colores ajustados a AA (mínimo 4.5:1), badges de estado con `role="status"`, iconografía puramente decorativa (íconos de marca SVG inline, flechas de tendencia) marcada con `aria-hidden="true"`.
 
 ## 📦 Estructura del Proyecto
 
@@ -127,13 +128,13 @@ La única zona con contenido potencialmente más ancho que la pantalla (la tabla
 
 ### Gráficos "drivers" sin JavaScript ni librerías de charting
 
-Las barras de *Retorno por Plataforma* y *Rendimiento por Producto*, así como el *Embudo de Conversión*, se construyen únicamente con utilidades de Tailwind:
+Los paneles *Retorno por Plataforma*, *Rendimiento por Producto* y *Embudo de Conversión* se construyen únicamente con utilidades de Tailwind, sin Canvas, SVG generado dinámicamente ni ninguna librería de charting:
 
-- Un contenedor `bg-slate-100 rounded-full` actúa como **pista** de ancho completo.
-- Dentro, un `<div>` con color de marca y `style="width: X%"` representa el **valor proporcional** relleno.
-- El embudo reutiliza la misma idea, pero con márgenes horizontales progresivos (`mx-2`, `mx-4`) para simular el estrechamiento visual de cada etapa.
+- **Barras verticales**: un contenedor con altura fija (`h-40`) y `items-end` define la línea base común; cada barra es un `<div>` con `style="height: X%"` relativo a esa altura, coloreado según la categoría (plataforma o producto). El eje de categorías combina el nombre en texto real con un ícono de marca SVG inline decorativo (`aria-hidden`) del mismo color que su barra.
+- **Embudo con trapecios reales**: cada etapa (*Alcance → Clics → Conversión*) es un `<div>` recortado con `style="clip-path: polygon(...)"` sobre un color de fondo de utilidad Tailwind — no son rectángulos con márgenes simulando un embudo, sino la forma geométrica real, con el estrechamiento progresivo comunicando la caída de volumen entre etapas.
+- Todo grupo de barras o el embudo completo se envuelve en `role="img"` + `aria-label` consolidado: como el valor exacto ya está impreso en el gráfico, un lector de pantalla recibe una sola descripción completa (ej. *"Instagram 1.850€, TikTok 1.200€, YouTube 700€"*) en vez de recorrer divs vacíos uno por uno.
 
-Este enfoque evita cargar Chart.js/D3 u otra librería externa: el "gráfico" es, en esencia, CSS puro con datos ya conocidos en tiempo de diseño, ideal para un dashboard estático como este.
+Este enfoque evita cargar Chart.js/D3 u otra librería externa: el "gráfico" es, en esencia, CSS puro (flexbox + `clip-path`) con datos ya conocidos en tiempo de diseño, ideal para un dashboard estático como este.
 
 ---
 
